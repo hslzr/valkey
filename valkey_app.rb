@@ -9,7 +9,6 @@ class ValkeyApp < Sinatra::Base
   get '/:namespace/:key' do
     key = Key.find_by_namespace_and_key(namespace: params[:namespace], key: params[:key])
 
-
     if key
       last_modified key.updated_at
       etag key.sha1

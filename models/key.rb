@@ -20,24 +20,6 @@ class Key < Sequel::Model
     where(namespace: namespace, key: key).first
   end
 
-  def self.find_or_create_by_namespace_and_key(namespace:, key:)
-    find_by_namespace_and_key(namespace:, key:) || create(namespace: namespace, key: key)
-  end
-
-  def self.update_by_namespace_and_key(namespace:, key:, value:)
-    key = find_by_namespace_and_key(namespace:, key:)
-    key.update(value: value) if key
-  end
-
-  def self.create_by_namespace_and_key(namespace:, key:, value:)
-    create(namespace: namespace, key: key, value: value)
-  end
-
-  def self.delete_by_namespace_and_key(namespace:, key:)
-    key = find_by_namespace_and_key(namespace:, key:)
-    key.destroy if key
-  end
-
   def to_json
     {
       namespace: namespace,
